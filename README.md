@@ -12,9 +12,10 @@ The script creates the connection to the PostgreSQL DB and runs the required SQL
 
 For some of the reports the views are created to support the calculation of the reports. These views are created and cleaned up within the script.
 
-##Example output
+## Example output
 
 The reported output is shown as follows:
+
 -----------------------------------------------------
 |      Top 3 most popular articles      |   Views   |
 -----------------------------------------------------
