@@ -1,4 +1,4 @@
-# Log Analysis Script
+# Log Analysis Project
 
 This script produces the following 3 reports based on the "Udacity News DB":
 
