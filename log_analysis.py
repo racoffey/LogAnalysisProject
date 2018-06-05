@@ -17,16 +17,23 @@ def log_analysis():
         3. HTTP error report, showing days with more than 1% errors
     """
     # Open connection to "news" DB
-    connection = psycopg2.connect("dbname=news")
-    cursor = connection.cursor()
 
-    # Request three reports
-    get_most_popular_articles(cursor)
-    get_authors_views(cursor)
-    get_error_report(cursor)
+    try:
+        connection = psycopg2.connect("dbname=news")
+    except psycopg2.Error as e:
+        print ("Error: Unable to connect to news DB")
+        print e.pgerror
+        print e.diag.message_detail
+    else:
+        cursor = connection.cursor()
 
-    # Close DB connection
-    connection.close()
+        # Request three reports
+        get_most_popular_articles(cursor)
+        get_authors_views(cursor)
+        get_error_report(cursor)
+
+        # Close DB connection
+        connection.close()
 
 
 # This method generates a report showing the 3 most popular articles
@@ -45,7 +52,7 @@ def get_most_popular_articles(cursor):
     # and then select the top 3.
     cursor.execute("""select articles.title, count(*) as views
                    from log, articles
-                   where log.path like CONCAT('%',articles.slug,'%')
+                   where log.path like CONCAT('%',articles.slug)
                    group by articles.title
                    order by views desc
                    limit 3;""")
@@ -78,7 +85,7 @@ def get_authors_views(cursor):
     # The list of authors ordered by views is then printed.
     cursor.execute("""select authors.name, count(*) as views
                    from log, articles, authors
-                   where log.path like CONCAT('%',articles.slug,'%')
+                   where log.path like CONCAT('%',articles.slug)
                    and articles.author = authors.id
                    group by authors.name
                    order by views desc;""")

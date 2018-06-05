@@ -49,6 +49,10 @@ Python 2 can be used but the PostgreSQL library will be required (see troublesho
 3. To run the program with the command `python3 log_analysis.py` or `python2 log_analysis.py`
 5. In the menu bar click on Run -> Run Module or press F5 on your keyboard
 
+The PostgreSQL database can be downloaded and installed from here:
+https://www.postgresql.org/download/ 
+The application has been tested with version 9.5.12.
+
 ## Troubleshooting
 If the error "no module named psycopg2" is received, it is likely Python 2.x is being run.  Please upgrade to Python 3.6.5 here:
 https://www.python.org/downloads/ 
@@ -60,3 +64,5 @@ Alternatively download the psycopg2 library:
 
 2. Then install the library:
 `pip install psycopg2` 
+
+The application has been tested with Pyscopg 2.7.4.
